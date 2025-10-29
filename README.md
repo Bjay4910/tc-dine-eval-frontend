@@ -32,6 +32,7 @@ Should be hardcoded to have only 4 meals:
 | field | type | purpose/contents |
 | --- | --- | --- |
 | name | string | display the food name |
+| meal | string | what meal it is |
 | reviews | string dictionary | hold user ID, message, rating |
 | activeRating | float/double | 5.0 scale of the current day |
 | overallRating | float/double | 5.0 scale of ratings it received |
