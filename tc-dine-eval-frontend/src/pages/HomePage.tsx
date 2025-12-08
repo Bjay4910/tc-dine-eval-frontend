@@ -23,6 +23,7 @@ function loadFile(path: string): Promise<string> {
     if (!response.ok) { 
       throw new Error('Network response was not ok');
     }
+    console.log("Response received for", path);
     return response.text();
   });
 }
@@ -32,13 +33,19 @@ export default function HomePage() {
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
 
-  let ret=loadFile('assets/menu_2025-12-01.json');
+  let ret=loadFile('menu_2025-12-01.json');
+
+  
+  //console.log(ret);
   ret.then((data)=>{
-    console.log("Loaded file data:", data);
+    let obj=JSON.parse(data as unknown as string);
+    //this accesses the lunch entrees
+    console.log("Loaded file data:", obj[1]["groups"][1]["items"][0]);
   }).catch((error)=>{
     console.error("Error loading file:", error);
   });
 
+  
   const fetchCurrentMeal = async (skipLoading = false) => {
   try {
     if (!skipLoading) {
@@ -105,7 +112,7 @@ export default function HomePage() {
           imageUrl: "https://images.unsplash.com/photo-1528607929212-2636ec44253e?w=400"
         }
       ];
-    } else if (currentTime >= 11.5 && currentTime < 14) {
+    } else if (currentTime >= 11.5 && currentTime < 20) {
       // Lunch: 11:30 AM - 2:00 PM
       mealType = 'lunch';
       mealName = 'Lunch';
