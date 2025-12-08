@@ -30,12 +30,12 @@ export default function HomePage() {
   useEffect(() => {
     async function loadMenu() {
       try {
-        const response = await fetch("/menu_2025-12-01.json");
+        const response = await fetch("https://calebrichmond04.pythonanywhere.com/menu/today");
         const json = await response.json();
-        console.log("Loaded menu JSON:", json);
+        console.log("Loaded menu API:", json);
         setMenuData(json);
       } catch (err) {
-        console.error("Failed to load menu JSON:", err);
+        console.error("Failed to load menu API:", err);
       }
     }
 
@@ -83,7 +83,8 @@ export default function HomePage() {
       const now = new Date();
       const currentHour = now.getHours();
       const currentMinute = now.getMinutes();
-      const currentTime = currentHour + currentMinute / 60;
+      //const currentTime = currentHour + currentMinute / 60;
+      const currentTime = 11.5;
 
       let mealName = "Dining Hall Closed";
       let mealTime = "Next meal: Check schedule";
